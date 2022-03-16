@@ -38,40 +38,42 @@ public class Encoder implements IEncoder {
 //            }
 //        };
 //    }
-    public static List<String> parse (String input){
+    public static String parse (String input){
         List<String> parsedList = new ArrayList<String>();
         CharacterIterator it = new StringCharacterIterator(input);
-        while (it.current() != CharacterIterator.DONE){
-            //TODA A PARTE DE TRATAR BPM+ E -
-
-            if (it.current() == 'b'|| it.current() =='B'){
-                if (it.next() == 'p' || it.next() == 'P'){
-                    if (it.next() == 'm' || it.next() == 'M'){
-                        if (it.next() == '+'){
-                            parsedList.add("BPM+");
-                        }
-                        else{
-                            if(it.current() == '-'){
-                                parsedList.add("BPM-");
-                        }
-                    }
-                }
-            }
-        }
-
-            //TODA A PARTE DE TRATAR T+ E -
-            if ((it.current() == 't'|| it.current() =='T')&& (it.next() == '+')) {
-                parsedList.add("T+");
-            }
-            if ((it.current() == 't'|| it.current() =='T')&& (it.next() == '-')) {
-                parsedList.add("T-");
-            }
-            else{
-                parsedList.add(Character.toString(it.current()));
-                it.next();
-            }
-        }
-        return parsedList;
+        String inputNotes = input.replaceAll("[^a-gA-G]", " ");
+//        while (it.current() != CharacterIterator.DONE){
+//            //TODA A PARTE DE TRATAR BPM+ E -
+//
+//            if (it.current() == 'b'|| it.current() =='B'){
+//                if (it.next() == 'p' || it.next() == 'P'){
+//                    if (it.next() == 'm' || it.next() == 'M'){
+//                        if (it.next() == '+'){
+//                            parsedList.add("BPM+");
+//                        }
+//                        else{
+//                            if(it.current() == '-'){
+//                                parsedList.add("BPM-");
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//            //TODA A PARTE DE TRATAR T+ E -
+//            if ((it.current() == 't'|| it.current() =='T')&& (it.next() == '+')) {
+//                parsedList.add("T+");
+//            }
+//            if ((it.current() == 't'|| it.current() =='T')&& (it.next() == '-')) {
+//                parsedList.add("T-");
+//            }
+//            else{
+//                parsedList.add(Character.toString(it.current()));
+//                it.next();
+//            }
+//        }
+//        return parsedList;
+        return inputNotes;
     }
 }
 

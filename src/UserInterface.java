@@ -8,6 +8,6 @@ public class UserInterface {
         return (input);
     }
     public static void displayParsedString(String s){
-        JOptionPane.showMessageDialog(null, "Parsed string: "+s);
+        JOptionPane.showMessageDialog(null, "Playing the following string: "+s);
     }
 }
