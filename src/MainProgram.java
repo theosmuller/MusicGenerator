@@ -6,7 +6,7 @@ public class MainProgram {
         String parsedString = Encoder.parse(input);
 //        String delim = "";
 //        String pstostring = String.join(delim, parsedString);
-        Maestro.play(parsedString);
+        Interpreter.play(parsedString);
         UserInterface.displayParsedString(parsedString);
 
     }

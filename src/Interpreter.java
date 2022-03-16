@@ -3,7 +3,7 @@ import org.jfugue.player.Player;
 import java.io.File;
 import java.io.IOException;
 
-public class Maestro implements IMaestro {
+public class Interpreter implements IInterpreter {
     public static void play(String musicString){
         new Thread(createThread(musicString)).start();
     }

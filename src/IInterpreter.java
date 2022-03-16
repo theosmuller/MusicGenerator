@@ -1,4 +1,4 @@
-public interface IMaestro {
+public interface IInterpreter {
     public static void play(String musicString) {
 
     }
