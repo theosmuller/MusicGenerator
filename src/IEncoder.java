@@ -4,7 +4,6 @@ public interface IEncoder {
     public List<String> complexValidInstructions = null;
     public List<Enum> encodedInstructions = null;
 
-    public static void parseAndEncode(String input, List<String> validInstructions) {
-        
-    }
+    private static String parse(String input) { return null; }
+    public static List<String> encode(String input) { return null; }
 }
