@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Encoder implements IEncoder {
 
-//    private List<String> validInstructions = null;
+    //    private List<String> validInstructions = null;
 //
 //    public Encoder (List<String> vi){
 //        validInstructions = vi;
@@ -38,10 +38,27 @@ public class Encoder implements IEncoder {
 //            }
 //        };
 //    }
+    // SOBRE O PARSE
+    // Já tira todos os caracteres inválidos
+    // Exceto pelos que fazem parte das palavras válidas (BPM+, T-, etc.)
+    // Precisa de alguma maneira de retirar esses caracteres isolados (regex?)
     public static String parse (String input){
-        List<String> parsedList = new ArrayList<String>();
+//        List<String> parsedList = new ArrayList<String>();
+        String validCharactersComplement = "[^"+Instructions.getValidCharsAsString()+"]";
+        String inputNotes = input.toUpperCase();
+        //Substituindo vogais que não são notas por código para facilitar iteração futura (substituir por nota anterior da string)
+        inputNotes = inputNotes.replaceAll("[OUIui]", "o");
+        inputNotes = inputNotes.replaceAll(" ", "R");
+        inputNotes = inputNotes.replaceAll(validCharactersComplement,"");
         CharacterIterator it = new StringCharacterIterator(input);
-        String inputNotes = input.replaceAll("[^a-gA-G]", " ");
+        while (it.current() != CharacterIterator.DONE){
+            if (it.current() == 'o'){
+                if (it.previous() == 'A'){
+                    //it.current()
+                }
+            }
+        }
+//        String inputNotes = input.replaceAll("[^a-gA-G]", " ");
 //        while (it.current() != CharacterIterator.DONE){
 //            //TODA A PARTE DE TRATAR BPM+ E -
 //
