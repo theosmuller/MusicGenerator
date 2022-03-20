@@ -1,7 +1,6 @@
 import org.jfugue.pattern.Pattern;
 import org.jfugue.player.Player;
-import java.io.File;
-import java.io.IOException;
+import java.util.List;
 
 public class Interpreter implements IInterpreter {
     public static void play(List<String> musicString){

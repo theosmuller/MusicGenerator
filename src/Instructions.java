@@ -15,8 +15,7 @@ public class Instructions {
 
 
     public static List<String> getValidCharsAsList(){
-        List<String> validChars = new ArrayList<>();
-        validChars.addAll(Arrays.asList(
+        return new ArrayList<>(Arrays.asList(
                 Instructions.NOTES,
                 Instructions.BPM_INCREASE,
                 Instructions.BPM_DECREASE,
@@ -28,13 +27,10 @@ public class Instructions {
                 Instructions.NEWLINE,
                 Instructions.REST,
                 Instructions.VOWELREPLACE
-                )
-        );
-        return validChars;
+        ));
     }
     public static String getValidCharsAsString(){
         List<String> vcList = getValidCharsAsList();
-        String vcString = String.join("",vcList);
-        return vcString;
+        return String.join("",vcList);
     }
 }
