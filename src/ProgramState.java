@@ -12,11 +12,11 @@ public class ProgramState implements IProgramState{
     }
 
     void pause() {
-        interpreter.currentPlayer.getManagedPlayer().pause();
+        interpreter.pause();
         isPaused = true;
     }
     void unpause() {
-        interpreter.currentPlayer.getManagedPlayer().resume();
+        interpreter.resume();
         isPaused = false;
     }
 

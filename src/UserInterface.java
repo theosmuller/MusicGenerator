@@ -3,7 +3,7 @@ import java.util.List;
 
 public class UserInterface implements IUserInterface {
 
-    public ProgramState programState = new ProgramState();
+    private final ProgramState programState = new ProgramState();
     public void start(){
         String input = UserInterface.getInput();
         programState.setMusicVector(Encoder.encode(input));

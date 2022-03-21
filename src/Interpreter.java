@@ -4,9 +4,7 @@ import java.util.List;
 
 
 public class Interpreter implements IInterpreter {
-
-
-    public Player currentPlayer;
+    private Player currentPlayer;
 
     public void play(List<String> musicString){
         new Thread(createThread(musicString)).start();
@@ -23,4 +21,13 @@ public class Interpreter implements IInterpreter {
             }
         };
     }
+
+    public void pause() {
+        currentPlayer.getManagedPlayer().pause();
+    }
+    public void resume() {
+        currentPlayer.getManagedPlayer().resume();
+    }
+
+
 }

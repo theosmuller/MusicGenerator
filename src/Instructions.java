@@ -1,17 +1,17 @@
 import java.util.*;
 
 public class Instructions {
-    public static final String NOTES = "ABCDEFGabcdefg";
-    public static final String BPM_INCREASE = "BPM+";
-    public static final String BPM_DECREASE = "BPM-";
-    public static final String TEMPO_INCREASE = "T+";
-    public static final String TEMPO_DECREASE = "T-";
-    public static final String VOLUME_INCREASE = "+";
-    public static final String VOLUME_DECREASE = "-";
-    public static final String RANDOMNOTE = ".?";
-    public static final String NEWLINE = "\n";
-    public static final String REST = "R";
-    public static final String VOWELREPLACE = "o";
+    private static final String NOTES = "ABCDEFGabcdefg";
+    private static final String BPM_INCREASE = "BPM+";
+    private static final String BPM_DECREASE = "BPM-";
+    private static final String TEMPO_INCREASE = "T+";
+    private static final String TEMPO_DECREASE = "T-";
+    private static final String VOLUME_INCREASE = "+";
+    private static final String VOLUME_DECREASE = "-";
+    private static final String RANDOMNOTE = ".?";
+    private static final String NEWLINE = "\n";
+    private static final String REST = "R";
+    private static final String VOWELREPLACE = "o";
 
 
     public static List<String> getValidCharsAsList(){
