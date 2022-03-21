@@ -17,15 +17,7 @@ public class Encoder implements IEncoder {
         inputNotes = inputNotes.replaceAll(" ", "R");
         inputNotes = inputNotes.replaceAll("[Ss]", "");     ///////// should not be needed
         inputNotes = inputNotes.replaceAll(validCharactersComplement,"");
-//        CharacterIterator it = new StringCharacterIterator(input);
-//        while (it.current() != CharacterIterator.DONE){
-//            if (it.current() == 'o'){
-//                if (it.previous() == 'A'){
-//                    //it.current()
-//                }
-//            }
-//            it.next();
-//        }
+
         for (int i = 0; i < inputNotes.length(); i++){
             if (Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G').contains(inputNotes.charAt(i))){
                 temp.append(inputNotes.charAt(i));
@@ -45,11 +37,6 @@ public class Encoder implements IEncoder {
             }
         }
         return temp.toString().replaceAll(".", "$0 ");
-
-
-//        inputNotes = inputNotes.replaceAll(".", "$0 ");
-//        System.out.println(inputNotes);
-//        return inputNotes;
     }
     public static List<String> encode (String input){
         List<String> output = new ArrayList<>();

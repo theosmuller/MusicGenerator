@@ -7,8 +7,8 @@ public class UserInterface implements IUserInterface {
     public void start(){
         String input = UserInterface.getInput();
         programState.setMusicVector(Encoder.encode(input));
-        programState.interpreter.play(programState.musicVector);
-        UserInterface.displayParsedString(programState.musicText);
+        programState.playInterpreter();
+        UserInterface.displayParsedString(programState.getMusicText());
     }
 
     public static String getInput(){
@@ -19,7 +19,7 @@ public class UserInterface implements IUserInterface {
     }
 
     private void onPauseButtonClicked(){
-        if (programState.isPaused) {
+        if (programState.getPaused()) {
             programState.pause();
         }
         else{
