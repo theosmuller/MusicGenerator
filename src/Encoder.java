@@ -27,7 +27,7 @@ public class Encoder implements IEncoder {
 //            it.next();
 //        }
         for (int i = 0; i < inputNotes.length(); i++){
-            if (Arrays.asList('A', 'B', 'C', 'D', 'E').contains(inputNotes.charAt(i))){
+            if (Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G').contains(inputNotes.charAt(i))){
                 temp.append(inputNotes.charAt(i));
             }
             else if (inputNotes.charAt(i) == 'o') {

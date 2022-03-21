@@ -2,17 +2,24 @@ import org.jfugue.pattern.Pattern;
 import org.jfugue.player.Player;
 import java.util.List;
 
+
 public class Interpreter implements IInterpreter {
-    public static void play(List<String> musicString){
+
+
+    public Player currentPlayer;
+
+    public void play(List<String> musicString){
         new Thread(createThread(musicString)).start();
     }
 
-    private static Runnable createThread(List<String> musicStrings) {
+    private Runnable createThread(List<String> musicStrings) {
         return () -> {
-            Player player = new Player();
+            currentPlayer = new Player();
             for (String s : musicStrings){
                 Pattern pattern = new Pattern(s);
-                player.play(pattern);
+                currentPlayer.play(pattern);
+                //isso aqui vai dar problema, tem que garantir q a thread n vai ignorar os pause
+                //do programstate e que esse for só vai pra proxima string qnd acabar de tocar o pattern
             }
         };
     }
