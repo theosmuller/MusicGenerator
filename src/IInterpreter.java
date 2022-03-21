@@ -1,9 +1,7 @@
 import java.util.List;
 
 public interface IInterpreter {
-    static Thread play(List<String> musicString) {
-        return null;
-    }
+    static void play(List<String> musicString) { }
 
     private static Runnable createThread(List<String> musicString) {
         return null;
