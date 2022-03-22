@@ -29,7 +29,6 @@ public class ProgramState implements IProgramState{
         musicText = musicVector.toString();
     }
 
-
     public String getMusicText() {
         return musicText;
     }

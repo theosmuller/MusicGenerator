@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Instructions {
+
     private static final String NOTES = "ABCDEFGabcdefg";
     private static final String BPM_INCREASE = "BPM+";
     private static final String BPM_DECREASE = "BPM-";
@@ -13,8 +14,7 @@ public class Instructions {
     private static final String REST = "R";
     private static final String VOWELREPLACE = "o";
 
-
-    public static List<String> getValidCharsAsList(){
+    public static List<String> getValidCharsAsList() {
         return new ArrayList<>(Arrays.asList(
                 Instructions.NOTES,
                 Instructions.BPM_INCREASE,
@@ -29,7 +29,8 @@ public class Instructions {
                 Instructions.VOWELREPLACE
         ));
     }
-    public static String getValidCharsAsString(){
+
+    public static String getValidCharsAsString() {
         List<String> vcList = getValidCharsAsList();
         return String.join("",vcList);
     }

@@ -4,22 +4,25 @@ import java.text.StringCharacterIterator;
 import java.util.*;
 
 public class Encoder implements IEncoder {
+
     // SOBRE O PARSE
     // Já tira todos os caracteres inválidos
     // Exceto pelos que fazem parte das palavras válidas (BPM+, T-, etc.)
     // Precisa de alguma maneira de retirar esses caracteres isolados (regex?)
-    private static String parse (String input){
+    private static String parse (String input) {
+
         StringBuilder temp = new StringBuilder();
         String validCharactersComplement = "[^"+Instructions.getValidCharsAsString()+"]";
         String inputNotes = input.toUpperCase();
+
         //Substituindo vogais que não são notas por código para facilitar iteração futura (substituir por nota anterior da string)
         inputNotes = inputNotes.replaceAll("[OUIui]", "o");
         inputNotes = inputNotes.replaceAll(" ", "R");
         inputNotes = inputNotes.replaceAll("[Ss]", "");     ///////// should not be needed
         inputNotes = inputNotes.replaceAll(validCharactersComplement,"");
 
-        for (int i = 0; i < inputNotes.length(); i++){
-            if (Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G').contains(inputNotes.charAt(i))){
+        for (int i = 0; i < inputNotes.length(); i++) {
+            if (Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G').contains(inputNotes.charAt(i))) {
                 temp.append(inputNotes.charAt(i));
             }
             else if (inputNotes.charAt(i) == 'o') {
@@ -38,7 +41,8 @@ public class Encoder implements IEncoder {
         }
         return temp.toString().replaceAll(".", "$0 ");
     }
-    public static List<String> encode (String input){
+
+    public static List<String> encode (String input) {
         List<String> output = new ArrayList<>();
         output.add(parse(input));
         return output;
