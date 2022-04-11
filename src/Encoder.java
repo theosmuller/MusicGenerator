@@ -5,6 +5,11 @@ import java.util.*;
 
 public class Encoder implements IEncoder {
 
+    public static List<String> encode (String input) {
+        List<String> output = new ArrayList<>();
+        output.add(parse(input));
+        return output;
+    }
     // SOBRE O PARSE
     // Já tira todos os caracteres inválidos
     // Exceto pelos que fazem parte das palavras válidas (BPM+, T-, etc.)
@@ -12,14 +17,17 @@ public class Encoder implements IEncoder {
     private static String parse (String input) {
 
         StringBuilder temp = new StringBuilder();
-        String validCharactersComplement = "[^"+Instructions.getValidCharsAsString()+"]";
         String inputNotes = input.toUpperCase();
 
         //Substituindo vogais que não são notas por código para facilitar iteração futura (substituir por nota anterior da string)
         inputNotes = inputNotes.replaceAll("[OUIui]", "o");
         inputNotes = inputNotes.replaceAll(" ", "R");
         inputNotes = inputNotes.replaceAll("[Ss]", "");     ///////// should not be needed
-        inputNotes = inputNotes.replaceAll(validCharactersComplement,"");
+        inputNotes = removeUselessCharacters(inputNotes);
+        String finalInputNotes = inputNotes;
+        Instructions.validInstructions.stream().forEach(
+                word -> temp.append(replaceWordWithCode(finalInputNotes, word.toString(), String.valueOf(word.ordinal()))  )
+        );
 
         for (int i = 0; i < inputNotes.length(); i++) {
             if (Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G').contains(inputNotes.charAt(i))) {
@@ -42,10 +50,14 @@ public class Encoder implements IEncoder {
         return temp.toString().replaceAll(".", "$0 ");
     }
 
-    public static List<String> encode (String input) {
-        List<String> output = new ArrayList<>();
-        output.add(parse(input));
-        return output;
+    private static String removeUselessCharacters (String input){
+        String validCharactersComplement = "[^"+Instructions.getValidCharsAsString()+"]";
+        return (input.replaceAll(validCharactersComplement,""));
+    }
+    //SÓ CHAMAR COM TUDO TOUPPER JÁ
+    private static String replaceWordWithCode (String input, String word, String code) {
+        return input.replace(word, code);
     }
 }
+
 
