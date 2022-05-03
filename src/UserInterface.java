@@ -18,6 +18,7 @@ public class UserInterface implements IUserInterface {
     private final JButton saveButtonWidget = new JButton("Save");
     private final JTextArea userInputWidget = new JTextArea();
 
+    // funcao para configurar as dimensoes de um botao que ira aparecer na interface grafica
     public void setButtonBounds(JButton button, JFugueConstants.BoxInfo boxInfo) {
         button.setBounds(boxInfo.getX(), boxInfo.getY(), boxInfo.getWidth(), boxInfo.getHeight());
     }
