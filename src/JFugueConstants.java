@@ -28,31 +28,11 @@ public class JFugueConstants {
             , => Instrumento = church organ
             ELSE => Repete nota (se char anterior era nota) ou Silêncio""";
 
-    public static class BoxInfo {
-        private final int x, y, width, height;
-
-        public BoxInfo(int x, int y, int width, int height) {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
-        }
-
-        public int getWidth() {
-            return width;
-        }
-
-        public int getHeight() {
-            return height;
-        }
+    public record BoxInfo(int x, int y, int width, int height) {
+        public int getX() { return x; }
+        public int getY() { return y; }
+        public int getWidth() { return width; }
+        public int getHeight() { return height; }
     }
 
     static BoxInfo inputWidget = new BoxInfo(10, 10, 270, 200);

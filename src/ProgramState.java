@@ -1,5 +1,4 @@
 public class ProgramState implements IProgramState {
-
     private String musicText = null;
     private final Interpreter interpreter;
 

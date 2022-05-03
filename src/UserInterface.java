@@ -23,6 +23,7 @@ public class UserInterface implements IUserInterface {
         button.setBounds(boxInfo.getX(), boxInfo.getY(), boxInfo.getWidth(), boxInfo.getHeight());
     }
 
+    // setup da interface grafica
     public void start() {
         mainWindow.setSize(JFugueConstants.WINDOW_WIDTH, JFugueConstants.WINDOW_HEIGHT);
         mainWindow.setLayout(null);
@@ -48,6 +49,7 @@ public class UserInterface implements IUserInterface {
         setUpButtonListeners();
     }
 
+    // atribuicao de rotinas a cada botao
     private void setUpButtonListeners() {
         ActionListener helpButtonListener = e -> onHelpButtonPressed();
         ActionListener loadButtonListener = e -> onLoadButtonPressed();
@@ -62,10 +64,12 @@ public class UserInterface implements IUserInterface {
         saveButtonWidget.addActionListener(saveButtonListener);
     }
 
+    // funcao feita ao se apertar o botao de help
     private void onHelpButtonPressed() {
         JOptionPane.showMessageDialog(null, JFugueConstants.HELP_MESSAGE);
     }
 
+    // funcao feita ao se apertar o botao de load
     private void onLoadButtonPressed() {
         JFileChooser fc = new JFileChooser();
         fc.setCurrentDirectory(new File("C:\\"));
@@ -90,6 +94,7 @@ public class UserInterface implements IUserInterface {
         }
     }
 
+    // funcao feita ao se apertar o botao de play
     private void onPlayButtonPressed() {
         helpButtonWidget.setVisible(true);
         saveButtonWidget.setVisible(true);
@@ -99,6 +104,7 @@ public class UserInterface implements IUserInterface {
         startPlay();
     }
 
+    // funcao feita ao se apertar o botao de stop
     private void onStopButtonPressed() {
         helpButtonWidget.setVisible(true);
         loadButtonWidget.setVisible(true);
@@ -108,6 +114,7 @@ public class UserInterface implements IUserInterface {
         programState.stop();
     }
 
+    // funcao feita ao se apertar o botao de save
     private void onSaveButtonPressed() {
         // Our patterns…
         try {
@@ -119,12 +126,14 @@ public class UserInterface implements IUserInterface {
         }
     }
 
+    // comeca a tocar a musica
     private void startPlay() {
         String encodedMusicText = Encoder.encode(userInputWidget.getText());
         programState.setMusicText(encodedMusicText);
         programState.playInterpreter(this);
     }
 
+    // rotina feita quando acaba de tocar a musica
     public void playEnded() {
         this.playButtonWidget.setVisible(true);
         this.loadButtonWidget.setVisible(true);

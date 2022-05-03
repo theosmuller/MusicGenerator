@@ -1,6 +1,7 @@
 import javax.swing.*;
 
 public class Encoder implements IEncoder {
+    // traducao e gerenciamento para execucao da musica codificada
     public static String encode(String input) {
         String output = "";
 
@@ -48,6 +49,7 @@ public class Encoder implements IEncoder {
         return output;
     }
 
+    // analisa e traduz texto da música de input
     private static String parse(String input) {
         String output = input;
 
@@ -67,6 +69,7 @@ public class Encoder implements IEncoder {
         return output;
     }
 
+    // dada uma string, converte ela pra uma forma que o interprete entende para a musica
     private static String replaceSymbolWithInstruction(String s) {
         s = s.replaceAll("[ ]", "+v");
         s = s.replaceAll("(?<=.)(?!v)(?!$)", " ");

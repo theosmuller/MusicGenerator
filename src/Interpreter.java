@@ -1,7 +1,6 @@
 import org.jfugue.pattern.Pattern;
 import org.jfugue.player.Player;
 
-// Classe que define o interpretador da string recebida e seus comportamentos
 public class Interpreter implements IInterpreter {
     private Player currentPlayer;
 
