@@ -1,17 +1,17 @@
-public class ProgramState implements IProgramState{
+public class ProgramState implements IProgramState {
 
     private String musicText = null;
     private final Interpreter interpreter;
 
-    public ProgramState(){
+    public ProgramState() {
         interpreter = new Interpreter();
     }
 
-    void stop() {
+    public void stop() {
         interpreter.stop();
     }
 
-    public void setMusicText (String input) {
+    public void setMusicText(String input) {
         musicText = input;
     }
 

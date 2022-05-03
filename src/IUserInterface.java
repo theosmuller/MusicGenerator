@@ -8,12 +8,23 @@ public interface IUserInterface {
     JTextArea userInputWidget = null;
     JButton stopButtonWidget = null;
 
-    private void setUpButtonListeners(){}
-    void start();
-    private void startPlay(){}
-    private String getInput(){
-        return null;
-    }
-    private void displayParsedString(String s) {  }
-    private void onPauseButtonClicked() {  }
+    public void setButtonBounds(JButton button, JFugueConstants.BoxInfo boxInfo);
+
+    public void start();
+
+    private void setUpButtonListeners() { }
+
+    private void onHelpButtonPressed() { }
+
+    private void onLoadButtonPressed() { }
+
+    private void onPlayButtonPressed() { }
+
+    private void onStopButtonPressed() { }
+
+    private void onSaveButtonPressed() { }
+
+    private void startPlay() { }
+
+    public void playEnded();
 }

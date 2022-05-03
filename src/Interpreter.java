@@ -4,6 +4,7 @@ import org.jfugue.player.Player;
 public class Interpreter implements IInterpreter {
     private Player currentPlayer;
 
+    @Override
     public void play(String musicString, UserInterface window) {
         new Thread(createThread(musicString, window)).start();
     }
@@ -21,5 +22,3 @@ public class Interpreter implements IInterpreter {
         currentPlayer.getManagedPlayer().pause();
     }
 }
-
-

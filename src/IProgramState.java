@@ -2,5 +2,13 @@ public interface IProgramState {
     String musicText = null;
     Interpreter interpreter = null;
 
-    static void setMusicText(String newMusicText) { }
+
+    public void stop();
+
+    public void setMusicText(String input);
+
+    public String getMusicText();
+
+    public void playInterpreter(UserInterface window);
+
 }

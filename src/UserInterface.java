@@ -18,20 +18,26 @@ public class UserInterface implements IUserInterface {
     private final JButton saveButtonWidget = new JButton("Save");
     private final JTextArea userInputWidget = new JTextArea();
 
+    public void setButtonBounds(JButton button, JFugueConstants.BoxInfo boxInfo) {
+        button.setBounds(boxInfo.getX(), boxInfo.getY(), boxInfo.getWidth(), boxInfo.getHeight());
+    }
+
     public void start() {
         mainWindow.setSize(JFugueConstants.WINDOW_WIDTH, JFugueConstants.WINDOW_HEIGHT);
         mainWindow.setLayout(null);
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainWindow.setVisible(true);
 
-        userInputWidget.setBounds(10, 10,270,200);
+        userInputWidget.setBounds(10, 10, 270, 200);
+        userInputWidget.setBounds(JFugueConstants.inputWidget.getX(), JFugueConstants.inputWidget.getY(),
+                JFugueConstants.inputWidget.getWidth(), JFugueConstants.inputWidget.getHeight());
         mainWindow.add(userInputWidget);
 
-        helpButtonWidget.setBounds(10, 220, 130, 30);
-        loadButtonWidget.setBounds(150, 220, 130, 30);
-        saveButtonWidget.setBounds(150, 220, 130, 30);
-        playButtonWidget.setBounds(10, 260, 270, 30);
-        stopButtonWidget.setBounds(10, 260, 270, 30);
+        setButtonBounds(helpButtonWidget, JFugueConstants.helpButton);
+        setButtonBounds(loadButtonWidget, JFugueConstants.loadButton);
+        setButtonBounds(saveButtonWidget, JFugueConstants.saveButton);
+        setButtonBounds(playButtonWidget, JFugueConstants.playButton);
+        setButtonBounds(stopButtonWidget, JFugueConstants.stopButton);
 
         mainWindow.add(helpButtonWidget);
         mainWindow.add(loadButtonWidget);
@@ -56,23 +62,7 @@ public class UserInterface implements IUserInterface {
     }
 
     private void onHelpButtonPressed() {
-        String helpText = """
-                    Instruções - Mapeamento de Caracteres:
-                    A => Nota Lá    B => Nota Si    C => Nota Dó    D => Nota Ré
-                    E => Nota Mi    F => Nota Fá    G => Nota Sol
-                    a,b,c,d,e,f,g => Repete nota (se char anterior era nota) ou Silêncio
-                    Espaço => Dobra volume ou volume = default (se impossível dobrar)
-                    ! => Instrumento = Agogo
-                    i,I,o,O,u,U => Instrumento = Harpsichord
-                    Outras consoantes => Repete nota (se char anterior era nota) ou Silêncio
-                    Número => Instrumento MIDI = atual + número
-                    ? => Aumenta uma oitava ou oitava = default (se impossível aumentar)
-                    NL => Instrumento = tubular bells
-                    ; => Instrumento = pan flute
-                    , => Instrumento = church organ
-                    ELSE => Repete nota (se char anterior era nota) ou Silêncio""";
-
-        JOptionPane.showMessageDialog(null, helpText);
+        JOptionPane.showMessageDialog(null, JFugueConstants.HELP_MESSAGE);
     }
 
     private void onLoadButtonPressed() {
@@ -85,8 +75,11 @@ public class UserInterface implements IUserInterface {
             File file = new File(fc.getSelectedFile().getAbsolutePath());
 
             Scanner scan;
-            try { scan = new Scanner(file); }
-            catch (FileNotFoundException e) { throw new RuntimeException(e); }
+            try {
+                scan = new Scanner(file);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
 
             String musicText = "";
             while (scan.hasNextLine()) {
@@ -105,7 +98,7 @@ public class UserInterface implements IUserInterface {
         startPlay();
     }
 
-    private void onStopButtonPressed(){
+    private void onStopButtonPressed() {
         helpButtonWidget.setVisible(true);
         loadButtonWidget.setVisible(true);
         playButtonWidget.setVisible(true);
@@ -131,7 +124,7 @@ public class UserInterface implements IUserInterface {
         programState.playInterpreter(this);
     }
 
-    public void playEnded(){
+    public void playEnded() {
         this.playButtonWidget.setVisible(true);
         this.loadButtonWidget.setVisible(true);
         this.stopButtonWidget.setVisible(false);
