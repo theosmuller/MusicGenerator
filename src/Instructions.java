@@ -5,7 +5,19 @@ public class Instructions {
 
 
     public enum validInstructions {
-        NOTES ("ABCDEFGabcdefg"),
+        NOTES ("ABCDEFG"),
+
+        REPEAT_SILENCE ("abcdefghjklmnpqrstvwxyzHJKLMNPQRSTVWXYZ"),
+
+        DIGIT ("!"),
+        AGOGO ("!"),
+        HARPSICHORD ("OUIoui"),
+        OCTAVEUP ("?"),
+        TUBULARBELLS ("\n"),
+        PANFLUTE (";"),
+        CHURCHORGAN (","),
+
+        VALID_COMMAND ("ABCDEFGIOUiou !1234567890?\n;,"),
         BPM_INCREASE ("BPM+"),
         BPM_DECREASE ("BPM-"),
         TEMPO_INCREASE ("T+"),
