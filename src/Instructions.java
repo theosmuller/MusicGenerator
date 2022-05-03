@@ -9,7 +9,6 @@ public class Instructions {
 
         REPEAT_SILENCE ("abcdefghjklmnpqrstvwxyzHJKLMNPQRSTVWXYZ"),
 
-        DIGIT ("!"),
         AGOGO ("!"),
         HARPSICHORD ("OUIoui"),
         OCTAVEUP ("?"),

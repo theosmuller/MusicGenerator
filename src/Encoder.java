@@ -1,6 +1,7 @@
 import com.sun.source.tree.CompilationUnitTree;
 import org.jfugue.midi.MidiDictionary;
 
+import javax.swing.*;
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
@@ -8,31 +9,53 @@ import java.util.*;
 
 public class Encoder implements IEncoder {
 
-    public static List<String> encode (String input) {
-        List<String> output = new ArrayList<>();
+
+
+    public static String encode (String input) {
+        String output = "";
 
         char[] parsed = parse(input).toCharArray();
 
-        int cur_volume = 0;
-        int cur_octave = 0;
-        int cur_instrument = 0;
+        int cur_volume = JFugueConstants.DEFAULT_VOLUME;
+        int cur_octave = JFugueConstants.MIN_OCTAVE;
+        int cur_instrument = JFugueConstants.DEFAULT_INSTRUMENT;
 
         for(int i = 0; i < parsed.length; i++){
             if(parsed[i] == '+'){
-                if(parsed[i+1] == 'v'){
-
+                i++;
+                if(parsed[i] == 'v'){
+                    cur_volume = (cur_volume * 2) % JFugueConstants.MAX_VOLUME;
+                    output += ":CON(7," + Integer.toString(cur_volume) + ")";
+                    if(cur_volume == 0) cur_volume = JFugueConstants.DEFAULT_VOLUME;
                 }
-                if(parsed[i+1] == 'i'){
-                    cur_instrument = cur_instrument +
-                }
-                if(parsed[i+1] == 'o'){
-
+                if(parsed[i] == 'o'){
+                    cur_octave = (cur_octave + 1) % JFugueConstants.MAX_OCTAVE;
+                    if(cur_octave == 0) cur_octave = JFugueConstants.MIN_OCTAVE;
                 }
             }
-            if(parsed[i] == 'I'){
+            else if(parsed[i] == 'I') {
+                String number = "";
+                i++;
+                while(parsed[i] != ' ') {
+                    number += parsed[i];
+                    i++;
+                }
+                i--;
+                cur_instrument = Integer.parseInt(number);
+                output += "I" + Integer.toString(cur_instrument);
+            }
+            else if(parsed[i] >= '0' && parsed[i] <= '9'){
+                int offset = (int)(parsed[i] - '0');
+                cur_instrument = (cur_instrument + offset) % JFugueConstants.MAX_INSTRUMENT;
+                if(cur_instrument == 0) cur_instrument = JFugueConstants.DEFAULT_INSTRUMENT;
+                output += "I" + Integer.toString(cur_instrument);
+            }
+            else{
+                output += parsed[i];
+                if(parsed[i] != ' ') output += Integer.toString(cur_octave);
             }
         }
-
+        JOptionPane.showMessageDialog(null,output);
         return output;
     }
     // SOBRE O PARSE
@@ -43,8 +66,8 @@ public class Encoder implements IEncoder {
     private static String parse(String input){
         String output = input;
 
-        output = output.replaceAll("[" + Instructions.validInstructions.REPEAT_SILENCE + "]","R ");
-        output = output.replaceAll("[^" + Instructions.validInstructions.VALID_COMMAND + "]","R ");
+        output = output.replaceAll("[" + "abcdefghjklmnpqrstvwxyzHJKLMNPQRSTVWXYZ" + "]","R");
+        output = output.replaceAll("[^" + "ABCDEFGIOUiou !1234567890?\n;," + "]","R");
 
         char[] temp = output.toCharArray();
 
@@ -52,20 +75,18 @@ public class Encoder implements IEncoder {
             if (temp[i] == 'R' && temp[i-1] >= 'A' && temp[i-1] <= 'G') {
                 temp[i] = temp[i - 1];
             }
-            if(temp[i] >= '0' && temp[i] <= '9'){
-                
-            }
         }
 
         output = String.valueOf(temp);
 
-        output = output.replaceAll("[ ]","+v ");
-        output = output.replaceAll("["+Instructions.validInstructions.OCTAVEUP+"]","+o ");
-        output = output.replaceAll("["+Instructions.validInstructions.AGOGO+"]","I113 ");
-        output = output.replaceAll("["+Instructions.validInstructions.HARPSICHORD+"]","I6 ");
-        output = output.replaceAll("["+Instructions.validInstructions.TUBULARBELLS+"]","I14 ");
-        output = output.replaceAll("["+Instructions.validInstructions.PANFLUTE+"]","I75 ");
-        output = output.replaceAll("["+Instructions.validInstructions.CHURCHORGAN+"]","I19 ");
+        output = output.replaceAll("[ ]","+v");
+        output = output.replaceAll("(?<=.)(?!v)(?!$)"," ");
+        output = output.replaceAll("["+"OUIoui"+"]","I6");
+        output = output.replaceAll("["+"?"+"]","+o");
+        output = output.replaceAll("["+"!"+"]","I113");
+        output = output.replaceAll("["+"\n"+"]","I14 ");
+        output = output.replaceAll("["+";"+"]","I75");
+        output = output.replaceAll("["+","+"]","I19");
 
         return output;
     }

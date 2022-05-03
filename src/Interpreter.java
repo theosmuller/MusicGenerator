@@ -6,19 +6,16 @@ public class Interpreter implements IInterpreter {
 
     private Player currentPlayer;
 
-    public void play(List<String> musicString) {
-        new Thread(createThread(musicString)).start();
+    public void play(String musicString, UserInterface window) {
+        new Thread(createThread(musicString, window)).start();
     }
 
-    private Runnable createThread(List<String> musicStrings) {
+    private Runnable createThread(String musicString, UserInterface window) {
         return () -> {
             currentPlayer = new Player();
-            for (String s : musicStrings) {
-                Pattern pattern = new Pattern(s);
-                currentPlayer.play(pattern);
-                //isso aqui vai dar problema, tem que garantir q a thread n vai ignorar os pause
-                //do programstate e que esse for só vai pra proxima string qnd acabar de tocar o pattern
-            }
+            Pattern pattern = new Pattern(musicString);
+            currentPlayer.play(pattern);
+            window.playEnded();
         };
     }
 

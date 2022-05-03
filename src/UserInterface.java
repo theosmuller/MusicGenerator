@@ -6,7 +6,7 @@ import java.util.List;
 public class UserInterface implements IUserInterface {
 
     private final ProgramState programState = new ProgramState();
-    private final JFrame mainWindow = new JFrame("Music Generator");
+    public final JFrame mainWindow = new JFrame("Music Generator");
     private final JButton helpButtonWidget = new JButton("Help");
     private final JButton playButtonWidget = new JButton("Play");
     private final JButton stopButtonWidget = new JButton("Stop");
@@ -42,8 +42,7 @@ public class UserInterface implements IUserInterface {
             public void actionPerformed(ActionEvent e) {
                 playButtonWidget.setVisible(false);
                 stopButtonWidget.setVisible(true);
-                programState.setMusicVector(Encoder.encode(userInputWidget.getText()));
-                programState.playInterpreter();
+                startPlay();
             }
         };
         ActionListener stopButtonListener = new ActionListener() {
@@ -60,6 +59,10 @@ public class UserInterface implements IUserInterface {
         stopButtonWidget.addActionListener(stopButtonListener);
     }
 
+    private void startPlay(){
+        programState.setMusicText(Encoder.encode(userInputWidget.getText()));
+        programState.playInterpreter(this);
+    }
     public static String getInput() {
         return (JOptionPane.showInputDialog("Insert music string: "));
     }
@@ -68,6 +71,10 @@ public class UserInterface implements IUserInterface {
         JOptionPane.showMessageDialog(null, "Playing the following string: "+s);
     }
 
+    public void playEnded(){
+        this.stopButtonWidget.setVisible(false);
+        this.playButtonWidget.setVisible(true);
+    }
     private void onPauseButtonClicked() {
         if (programState.getPaused()) {
             programState.pause();

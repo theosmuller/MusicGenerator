@@ -2,9 +2,9 @@ import java.util.List;
 
 public interface IInterpreter {
 
-    static void play(List<String> musicString) { }
+    static void play(String musicString, UserInterface window) { }
 
-    private static Runnable createThread(List<String> musicString) {
+    private static Runnable createThread(String musicString, UserInterface window) {
         return null;
     }
 

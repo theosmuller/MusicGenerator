@@ -1,29 +1,22 @@
 public class JFugueConstants {
 
-    public enum musicConstants{
-        PAUSE ("R"),
-        BPM ("T"),
-        INSTRUMENT ("I"),
-        VOLUME (":CON(7,"),
-        DEFAULT_FILE_NAME ("generated_music");
+    public static final int WINDOW_WIDTH = 300;
+    public static final int WINDOW_HEIGHT = 300;
+    public static final int MAX_TEXT_SIZE = 1000;
+    public static final int MIN_BPM = 40;
+    public static final int MAX_BPM = 220;
+    public static final int MIN_OCTAVE = 4;
+    public static final int MAX_OCTAVE = 10;
+    public static final int DEFAULT_VOLUME = 50;
 
-        musicConstants(final String c) {
-        }
-    }
+    public static final int DEFAULT_INSTRUMENT = 0;
 
-    public enum numericConstants{
-        WINDOW_WIDTH (779),
-        WINDOW_HEIGHT (695),
-        MAX_TEXT_SIZE (1000),
-        MIN_BPM (40),
-        MAX_BPM (220),
-        MIN_OCTAVE (0),
-        MAX_OCTAVE (9),
-        DEFAULT_VOLUME (50),
-        MAX_VOLUME (127);
-
-        numericConstants(final int i) {
-        }
-    }
+    public static final int MAX_INSTRUMENT = 128;
+    public static final int MAX_VOLUME = 127;
+    public static final String PAUSE = "R";
+    public static final String BPM = "T";
+    public static final String INSTRUMENT = "I";
+    public static final String VOLUME = ":CON(7,";
+    public static final String DEFAULT_FILE_NAME = "generated_music";
 
 }

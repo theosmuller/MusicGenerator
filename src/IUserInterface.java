@@ -12,6 +12,7 @@ public interface IUserInterface {
     private void setUpButtonListeners(){}
     void start();
 
+    private void startPlay(){}
     private String getInput(){
         return null;
     }
