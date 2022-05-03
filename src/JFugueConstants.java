@@ -1,5 +1,5 @@
 public class JFugueConstants {
-    public static final boolean IS_DEBUG_ON = false;
+    public static final boolean IS_DEBUG_ON = true;
     public static final int WINDOW_WIDTH = 305;
     public static final int WINDOW_HEIGHT = 340;
     public static final int MIN_OCTAVE = 4;
@@ -8,9 +8,6 @@ public class JFugueConstants {
     public static final int DEFAULT_INSTRUMENT = 0;
     public static final int MAX_INSTRUMENT = 128;
     public static final int MAX_VOLUME = 127;
-    public static final String INSTRUMENT = "I";
-    public static final String VOLUME = ":CON(7,";
-    public static final String DEFAULT_FILE_NAME = "generated_music";
 
     public static final String HELP_MESSAGE = """
             Instruções - Mapeamento de Caracteres:
@@ -41,5 +38,4 @@ public class JFugueConstants {
     static BoxInfo saveButton = new BoxInfo(150, 220, 130, 30);
     static BoxInfo playButton = new BoxInfo(10, 260, 270, 30);
     static BoxInfo stopButton = new BoxInfo(10, 260, 270, 30);
-
 }

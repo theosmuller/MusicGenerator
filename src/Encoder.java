@@ -73,12 +73,12 @@ public class Encoder implements IEncoder {
     private static String replaceSymbolWithInstruction(String s) {
         s = s.replaceAll("[ ]", "+v");
         s = s.replaceAll("(?<=.)(?!v)(?!$)", " ");
-        s = s.replaceAll("[OUIoui]", "I6");
+        s = s.replaceAll("[OUIoui]", "I6 ");
         s = s.replaceAll("[?]", "+o");
-        s = s.replaceAll("[!]", "I113");
+        s = s.replaceAll("[!]", "I113 ");
         s = s.replaceAll("[\n]", "I14 ");
-        s = s.replaceAll("[;]", "I75");
-        s = s.replaceAll("[,]", "I19");
+        s = s.replaceAll("[;]", "I75 ");
+        s = s.replaceAll("[,]", "I19 ");
         return s;
     }
 }
