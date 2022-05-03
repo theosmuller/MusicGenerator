@@ -66,12 +66,12 @@ public class Encoder implements IEncoder {
             }
         }
         output = String.valueOf(temp);
-        output = replaceToMIDI(output);
+        output = replaceSymbolWithInstruction(output);
 
         return output;
     }
 
-    private static String replaceToMIDI(String s) {
+    private static String replaceSymbolWithInstruction(String s) {
         s = s.replaceAll("[ ]","+v");
         s = s.replaceAll("(?<=.)(?!v)(?!$)"," ");
         s = s.replaceAll("[OUIoui]","I6");

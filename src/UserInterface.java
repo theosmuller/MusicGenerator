@@ -19,12 +19,12 @@ public class UserInterface implements IUserInterface {
     private final JTextArea userInputWidget = new JTextArea();
 
     public void start() {
-        mainWindow.setSize(305,340);
+        mainWindow.setSize(JFugueConstants.WINDOW_WIDTH, JFugueConstants.WINDOW_HEIGHT);
         mainWindow.setLayout(null);
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainWindow.setVisible(true);
 
-        userInputWidget.setBounds(10,10,270,200);
+        userInputWidget.setBounds(10, 10,270,200);
         mainWindow.add(userInputWidget);
 
         helpButtonWidget.setBounds(10, 220, 130, 30);
