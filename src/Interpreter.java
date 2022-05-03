@@ -1,9 +1,7 @@
 import org.jfugue.pattern.Pattern;
 import org.jfugue.player.Player;
-import java.util.List;
 
 public class Interpreter implements IInterpreter {
-
     private Player currentPlayer;
 
     public void play(String musicString, UserInterface window) {
@@ -19,12 +17,8 @@ public class Interpreter implements IInterpreter {
         };
     }
 
-    public void pause() {
+    public void stop() {
         currentPlayer.getManagedPlayer().pause();
-    }
-
-    public void resume() {
-        currentPlayer.getManagedPlayer().resume();
     }
 }
 
